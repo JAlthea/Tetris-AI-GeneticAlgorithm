@@ -7,9 +7,8 @@ Below is an example of an execution screen for this project.
 </pre>
 
 
-<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/gameplay1.JPG" width="300 height="300>
-![gameplay1](https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/gameplay1.JPG)
-![gameplay2](https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/gameplay2.JPG)
-![example1](https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example1.JPG)
-![example2](https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example2.JPG)
-![example3](https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example3.JPG)
+<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/gameplay1.JPG" width="500" height="500">
+<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/gameplay2.JPG" width="500" height="500">
+<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example1.JPG" width="1000" height="500">
+<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example2.JPG" width="1000" height="500">
+<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example3.JPG" width="1000" height="500">

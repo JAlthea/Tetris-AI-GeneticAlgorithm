@@ -1,0 +1,7 @@
+/// @desc (weights, generation, score)
+
+var weights = argument0;
+var generation = argument1;
+var myScore = argument2;
+
+return [weights, generation, myScore];

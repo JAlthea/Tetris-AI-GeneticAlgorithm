@@ -1,0 +1,177 @@
+/// @description Running
+
+timer += 1;
+gametimer += 1/room_speed;
+
+//Exit
+while (oExit){}
+
+//Gameover
+gameover();
+
+//Play By Genetic Algorithm
+if (timer > delay - 9)
+{
+	decideBlock();
+	//위의 함수로 인해서 tmp를 반환하고, pa,pb를 결정한다.
+	for (var i=0; i<4; i++)
+	{
+		pa[i,0] = tmp[i,0];
+		pa[i,1] = tmp[i,1];
+		pb[i,0] = pa[i,0];
+		pb[i,1] = pa[i,1];
+	}
+	for (var i=0; i<4; i++)
+		field[pb[i,1],pb[i,0]] = colorNum;
+		
+	for (var i=0; i<4; i++)
+	{
+		pa[i,0] = next[i,0] - nextX;
+		pa[i,1] = next[i,1] - nextY;
+	}
+		
+	//Next block
+	colorNum2 = irandom(8);
+	n2 = irandom(6);
+	for (var i=0; i<4; i++)
+	{
+		next[i,0] = figures[n2,i] % 2 + nextX;
+		next[i,1] = floor(figures[n2,i] / 2) + nextY;
+	}
+	//Next Rotate
+	p = [next[1,0], next[1,1]];
+	for (var i=0; i<4; i++)
+	{
+		var cx = next[i,1] - p[1];
+		var cy = next[i,0] - p[0];
+		next[i,0] = p[0] - cx;
+		next[i,1] = p[1] + cy;
+	}
+	//Next x,y
+	if (n2 == 0)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,0] += 2;
+			next[i,1] += 2;
+		}
+	}
+	if (n2 == 1)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,0] += 1;
+		}
+	}
+	if (n2 == 2)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,1] += 1;
+		}
+	}
+	if (n2 == 3)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,1] += 1;
+		}
+	}
+	if (n2 == 4)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,0] += 1;
+			next[i,1] += 2;
+		}
+	}
+	if (n2 == 5)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,1] += 1;
+		}
+	}
+	if (n2 == 6)
+	{
+		for (var i=0; i<4; i++)
+		{
+			next[i,1] += 2;
+		}
+	}
+
+	colorNum = colorNum2;
+	timer = 0;
+}
+
+//Check lines
+var k = M - 1;
+for (var i=M-1; i>0; i--)
+{
+	var count = 0;
+	for (var j=0; j<N; j++)
+	{
+		if (field[i,j] != -1) count++;
+		field[k,j] = field[i,j];
+	}
+	if (count < N) k--;
+}
+
+//Draw
+draw_clear(c_black);
+//Stacked blocks
+for (var i=0; i<M; i++)
+{
+	for (var j=0; j<N; j++)
+	{
+		if (field[i,j] == -1) continue;
+		var cx = i * cellSize;
+		var cy = j * cellSize;
+		var imgIndex = cellSize * field[i,j];
+		draw_sprite_part(prettyblocks2, 0, imgIndex, 0, cellSize, cellSize, cy + frameX, cx + frameY);
+	}
+}
+//Now blocks
+for (var i=0; i<4; i++)
+{
+	var cx = pa[i,0] * cellSize;
+	var cy = pa[i,1] * cellSize;
+	var imgIndex = cellSize * colorNum;
+	draw_sprite_part(prettyblocks2, 0, imgIndex, 0, cellSize, cellSize, cx + frameX, cy + frameY);
+}
+//Next blocks
+for (var i=0; i<4; i++)
+{
+	var cx = next[i,0] * cellSize;
+	var cy = next[i,1] * cellSize;
+	var imgIndex = cellSize * colorNum;
+	draw_sprite_part(prettyblocks2, 0, imgIndex, 0, cellSize, cellSize, cx + frameX, cy + frameY);
+}
+draw_sprite(mainFrame, 0, 0, 0);
+draw_sprite(nextBlockFrame, 0, 385, 32);
+draw_sprite(weightBoard, 0, 375, 160);
+
+var g = ds_list_find_value(Genes, geneIndex);
+var w = g[0];
+var geneNumber = "Gene No." + string(geneIndex);
+var geneGeneration = "Generation : " + string(g[1]);
+var geneW0 = "MaxHeight : \n" + string(w[0]);
+var geneW1 = "HeightDeviation : \n" + string(w[1]);
+var geneW2 = "CloseBlocks : \n" + string(w[2]);
+var geneW3 = "CloseHoles : \n" + string(w[3]);
+var geneW4 = "CompleteLine : \n" + string(w[4]);
+var geneW5 = "AdjoinBlocks : \n" + string(w[5]);
+var geneW6 = "AdjoinWall : \n" + string(w[6]);
+var geneW7 = "AdjoinFloor : \n" + string(w[7]);
+var beforeScore = "Before Best Score : \n" + string(bestScore);
+draw_text(405, 192, string(geneNumber));
+draw_text(405, 212, string(geneGeneration));
+draw_text(405, 232, string(geneW0));
+draw_text(405, 272, string(geneW1));
+draw_text(405, 312, string(geneW2));
+draw_text(405, 352, string(geneW3));
+draw_text(405, 392, string(geneW4));
+draw_text(405, 432, string(geneW5));
+draw_text(405, 472, string(geneW6));
+draw_text(405, 512, string(geneW7));
+draw_text(385, 574, string(beforeScore));

@@ -1,0 +1,151 @@
+/*  하나의 블록에 대해서 모든 모양을 가능한 좌표에 시뮬레이션  */
+
+var blockFigure = 4;	//min : 1, max : 4
+var indexMax = 10;
+var blockInfo = array_create(2);
+
+//실제 블록들의 모습을 가상의 블록에 복사한다.
+virtualPc[4,2] = 0;
+tmp[4,2] = 0;
+for (var i=0; i<4; i++)
+{
+	virtualPc[i,0] = pa[i,0];
+	virtualPc[i,1] = pa[i,1];
+}
+for (var i=0; i<M; i++)
+	for (var j=0; j<N; j++)
+		virtualField[i,j] = field[i,j];
+
+var maxSum = -9999;
+for (var j=0; j<blockFigure; j++)
+{
+	for (var index=0; index<indexMax; index++)
+	{
+		//Move x index
+		for (var i=0; i<4; i++)
+		{
+			virtualPb[i,0] = virtualPc[i,0];
+			virtualPb[i,1] = virtualPc[i,1];
+			virtualPa[i,0] = virtualPc[i,0];
+			virtualPa[i,1] = virtualPc[i,1];
+			
+			virtualPa[i,0] += index;
+		}
+		if (!checkArrayIndex())	//원래대로 위치시킨다.
+		{
+			for (var i=0; i<4; i++)
+			{
+				virtualPa[i,0] = virtualPb[i,0];
+				virtualPa[i,1] = virtualPb[i,1];
+			}
+			break;
+		}
+		
+        //Drop
+		while (checkArrayIndex())
+		{
+			for (var i=0; i<4; i++)
+			{
+				virtualPb[i,0] = virtualPa[i,0];
+				virtualPb[i,1] = virtualPa[i,1];
+					
+				virtualPa[i,1] += 1;
+			}
+		}
+		for (var i=0; i<4; i++)
+			virtualField[virtualPb[i,1],virtualPb[i,0]] = colorNum;
+		
+		var tmpValue = calcWeights();
+		if (maxSum < tmpValue)
+		{
+			maxSum = tmpValue;
+			blockInfo[0] = j;	//figure
+			blockInfo[1] = i;	//index
+			for (var i=0; i<4; i++)		//sum 값 중에서 가장 높은 값을 이에 해당하는 실제 블록 위치에 놓는다.
+			{
+				tmp[i,0] = virtualPb[i,0];
+				tmp[i,1] = virtualPb[i,1];
+			}
+		}
+		
+		//하나의 시뮬레이션이 끝났으므로 원래대로 되돌린다.
+		for (var i=0; i<4; i++)
+			virtualField[virtualPb[i,1],virtualPb[i,0]] = -1;
+		for (var i=0; i<4; i++)
+		{
+			virtualPb[i,0] = virtualPc[i,0];
+			virtualPb[i,1] = virtualPc[i,1];
+			virtualPa[i,0] = virtualPc[i,0];
+			virtualPa[i,1] = virtualPc[i,1];
+		}
+	}
+		
+	//회전 후, 인덱스를 다시 0이 될 때까지(왼쪽 벽으로 땡겨서) 왼쪽으로 옮겨준다.
+	//오른쪽에 딱 붙었을 때, 회전이 안되는 경우가 있으므로, 회전할때만큼은 살짝 왼쪽으로 2칸 옮겨서 한다.
+	
+	//Move +x +y index
+	for (var i=0; i<4; i++)
+	{		
+		virtualPc[i,0] += 3;
+		virtualPc[i,1] += 3;
+		
+		virtualPa[i,0] = virtualPc[i,0];
+		virtualPa[i,1] = virtualPc[i,1];
+		virtualPb[i,0] = virtualPc[i,0];
+		virtualPb[i,1] = virtualPc[i,1];
+	}
+	
+	//Rotate
+	virtualP = [virtualPa[1,0], virtualPa[1,1]];
+	for (var i=0; i<4; i++)
+	{
+		var cx = virtualPa[i,1] - virtualP[1];
+		var cy = virtualPa[i,0] - virtualP[0];
+		virtualPa[i,0] = virtualP[0] - cx;
+		virtualPa[i,1] = virtualP[1] + cy;
+	}
+	if (!checkArrayIndex())
+	{
+		for (var i=0; i<4; i++)
+		{
+			virtualPa[i,0] = virtualPc[i,0];
+			virtualPa[i,1] = virtualPc[i,1];
+		}
+	}
+	
+	//Move -x index
+	while (checkArrayIndex())
+	{
+		for (var i=0; i<4; i++)
+		{
+			virtualPb[i,0] = virtualPa[i,0];
+			virtualPb[i,1] = virtualPa[i,1];
+			virtualPc[i,0] = virtualPa[i,0];
+			virtualPc[i,1] = virtualPa[i,1];
+			
+			virtualPa[i,0] -= 1;
+		}
+	}
+	if (!checkArrayIndex())	//원래대로 위치시킨다.
+	{
+		for (var i=0; i<4; i++)
+		{	
+			virtualPa[i,0] = virtualPb[i,0];
+		}
+	}
+	
+	//Move -y index
+	var t = 1;
+	while (t)
+	{
+		for (var i=0; i<4; i++)
+		{
+			virtualPb[i,1] = virtualPa[i,1];
+			virtualPc[i,1] = virtualPa[i,1];
+			
+			virtualPa[i,1] -= 1;
+			if (virtualPa[i,1] < 0)
+				t = 0;
+		}		
+	}
+}

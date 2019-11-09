@@ -1,6 +1,5 @@
 <pre>
 This project was made by GameMakerStudio2.
-All codes were written self
 Thank you.
 -------------------------------------------
 Below is an example of an execution screen for this project.

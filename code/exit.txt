@@ -1,7 +1,0 @@
-/// @description Exit
-
-show_message("Sucess : memory release");
-oExit = true;
-ds_list_destroy(Genes);
-ds_list_destroy(Scores);
-game_end();

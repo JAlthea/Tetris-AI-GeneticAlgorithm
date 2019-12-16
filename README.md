@@ -7,4 +7,4 @@ Thank you.
 Below is an example of an execution screen for this project.
 </pre>
 
-<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/master/images/example50000.PNG" width="400" height="500"></div>
+<img src="https://github.com/JangAlthea/GeneticAlgorithmForTetris/blob/testing/images/example50000.PNG" width="400" height="500"></div>

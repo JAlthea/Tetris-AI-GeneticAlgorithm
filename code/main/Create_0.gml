@@ -157,7 +157,6 @@ for (var i=0; i<4; i++)
 }
 
 
-
 /* User Interface */
 globalvar oExit;	//Game Exit
 oExit = false;
@@ -169,7 +168,6 @@ globalvar oPause;	//Temporary Stop
 oPause = false;
 globalvar oSkip;	//Accelerator For GeneticAlgorithm
 oSkip = false;
-
 
 
 /* For Genetic Algorithm  */

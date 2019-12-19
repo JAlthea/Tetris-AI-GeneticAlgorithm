@@ -14,9 +14,9 @@ The weights selected in this way are : <b>MaxHeight, Bumpiness, Holes, CompleteL
 
 
 # ResultWeights.txt
-Generation : 0 ~ 14 (AI is repeated 11 games for counting an average and the number of blocks is limited to 1000)
-Generation : 15 ~ (AI play only 1 game and there is no limit on the number of blocks)
-
+Generation : 0 ~ 14 (AI is repeated 11 games for counting an average and the number of blocks is limited to 1000) <br>
+Generation : 15 ~ (AI play only 1 game and there is no limit on the number of blocks) <br>
+[ResultWeights.txt](ResultWeights.txt)
 
 # Execution screen
 <div><img src="images/tetris_main.PNG" width="250" height="300"><img src="images/start_learning.PNG" width="250" height="300"></div>

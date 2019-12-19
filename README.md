@@ -14,8 +14,6 @@ The weights selected in this way are : <b>MaxHeight, Bumpiness, Holes, CompleteL
 
 
 # Execution screen
-<div><img src="images/tetris_main.PNG" width="250" height="300"></div>
-<div><img src="images/start_learning.PNG" width="250" height="300"></div>
-<div><img src="images/set_weights.PNG" width="250" height="300"></div>
-<div><img src="images/select_level.PNG" width="250" height="300"></div>
-<div><img src="imagesplay_with_GA.PNG" width="500" height="300"></div>
+<div><img src="images/tetris_main.PNG" width="250" height="300"><img src="images/start_learning.PNG" width="250" height="300"></div>
+<div><img src="images/set_weights.PNG" width="250" height="300"><img src="images/select_level.PNG" width="250" height="300"></div>
+<div><img src="images/play_with_GA.PNG" width="500" height="300"></div>

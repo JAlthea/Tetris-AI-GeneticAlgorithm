@@ -16,6 +16,10 @@ The weights selected in this way are : <b>MaxHeight, Bumpiness, Holes, CompleteL
 
 
 # ResultWeights.txt
+File contains weights arranged in descending order for each generation. <br>
+AI set random weights in the beginning, and AI play based on that. <br>
+It store the weights in a file at the end of each generation. Of course you can call it up. <br>
+
 Generation : 0 ~ 14 (AI is repeated 11 games for counting an average and the number of blocks is limited to 1000) <br>
 Generation : 15 ~ (AI play only 1 game and there is no limit on the number of blocks) <br>
 [ResultWeights.txt](ResultWeights.txt)

@@ -1,6 +1,8 @@
 # Tetris AI 
 Using Genetic Algorithm, AI was implemented. <br>
 This project was written in GameMaker Studio 2. <br>
+[TetrisWithGeneticAlgorithm.zip](TetrisWithGeneticAlgorithm.zip) <br>
+[GameMaker Studio 2](https://accounts.yoyogames.com/downloads)
 
 # Learning example
 <div><img src="images/example50000.PNG" width="500" height="600"></div>

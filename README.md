@@ -6,7 +6,7 @@ This project was written in GameMaker Studio 2. <br>
 
 # Learning example
 <div><img src="images/example50000.PNG" width="500" height="600"></div>
-
+[TetrisPlay1](TetrisPlay1.mp4) [TetrisPlay2](TetrisPlay2.mp4)
 
 # Weights
 Weight consists of positive and negative factors that affect the game. <br>

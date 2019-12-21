@@ -6,6 +6,8 @@ This project was written in GameMaker Studio 2. <br>
 
 # Learning example
 <div><img src="images/example50000.PNG" width="500" height="600"></div>
+
+# Play video
 [TetrisPlay1](TetrisPlay1.mp4) [TetrisPlay2](TetrisPlay2.mp4)
 
 # Weights

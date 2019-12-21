@@ -21,6 +21,7 @@ The coefficient of weight x the sum of the corresponding numbers determines the 
 weight(n) = c x k (k : the number of the corresponding block) <br>
 fitness = weight(1) + weight(2) + ... + weight(n) <br>
 When the block is placed in that position, the final decision is to have the highest fitness value. <br>
+<b>Real Fitness = MaxHeight + Bumpiness + Holes + CompleteLine<br>
 
 # ResultWeights.txt
 File contains weights arranged in descending order for each generation. <br>

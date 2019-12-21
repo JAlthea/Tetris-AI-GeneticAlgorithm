@@ -16,6 +16,11 @@ For example, if you place a block and it has a lot of space between the blocks, 
 This means that you can count the number of spaces that occur when a block is placed in a position and use it as a weight. <br>
 The weights selected in this way are : <b>MaxHeight, Bumpiness, Holes, CompleteLine</b> <br>
 
+# Fitness
+The coefficient of weight x the sum of the corresponding numbers determines the suitability. <br>
+weight(n) = c x k (k : the number of the corresponding block) <br>
+fitness = weight(1) + weight(2) + ... + weight(n) <br>
+When the block is placed in that position, the final decision is to have the highest fitness value. <br>
 
 # ResultWeights.txt
 File contains weights arranged in descending order for each generation. <br>

@@ -1,5 +1,5 @@
 # Tetris AI 
-Using Genetic Algorithm, AI was implemented. <br>
+Using <b>Genetic Algorithm</b>, AI of immortal level was implemented. <br>
 This project was written in GameMaker Studio 2. <br>
 [TetrisWithAI.zip](TetrisWithAI.zip) <br>
 [GameMaker Studio 2](https://accounts.yoyogames.com/downloads)

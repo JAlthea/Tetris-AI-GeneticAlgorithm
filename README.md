@@ -7,7 +7,7 @@ This project was written in GameMaker Studio 2. <br>
 # Learning example
 <b>* Early Generation Play</b> <br>
 <div><img src="images/start_generation_play.gif" width="500" height="600"></div> <br>
-
+<br><br>
 <b>* Optimized Generation Play</b> <br>
 <div><img src="images/optimized_generation_play.gif" width="500" height="600"></div>
 
@@ -41,4 +41,6 @@ Generation : 15 ~ (AI play only 1 game and there is no limit on the number of bl
 <div><img src="images/main_screen.gif" width="250" height="300"><img src="images/learning_option_screen.gif" width="250" height="300"></div>
 <div><img src="images/weight_setting_screen.gif" width="250" height="300"><img src="images/level_selecting_screen.gif" width="250" height="300"></div>
 
-
+# Battle screen
+<b>* User vs AI Play</b> <br>
+<div><img src="images/verse_play.gif"></div>

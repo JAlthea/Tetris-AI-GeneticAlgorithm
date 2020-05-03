@@ -7,7 +7,7 @@ This project was written in GameMaker Studio 2. <br>
 # Learning example
 <b>* Early Generation Play</b> <br>
 <div><img src="images/start_generation_play.gif" width="500" height="600"></div> <br>
-<br><br>
+<br>
 <b>* Optimized Generation Play</b> <br>
 <div><img src="images/optimized_generation_play.gif" width="500" height="600"></div>
 

@@ -12,8 +12,8 @@ This project was written in GameMaker Studio 2. <br>
 <div><img src="images/optimized_generation_play.gif" width="500" height="600"></div>
 
 # Play video
-[TetrisPlay_AI_Learning](TetrisPlay_AI_Learning.mp4) <br>
-[TetrisPlay_Battle](TetrisPlay_Battle.mp4)
+[TetrisPlay_AI_Learning.mp4](TetrisPlay_AI_Learning.mp4) <br>
+[TetrisPlay_Battle.mp4](TetrisPlay_Battle.mp4)
 
 # Weights
 Weight consists of positive and negative factors that affect the game. <br>

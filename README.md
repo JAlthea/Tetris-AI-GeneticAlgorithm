@@ -5,10 +5,15 @@ This project was written in GameMaker Studio 2. <br>
 [GameMaker Studio 2](https://accounts.yoyogames.com/downloads)
 
 # Learning example
-<div><img src="images/example50000.PNG" width="500" height="600"></div>
+<b>* Early Generation Play</b> <br>
+<div><img src="images/start_generation_play.gif" width="500" height="600"></div> <br>
+
+<b>* Optimized Generation Play</b> <br>
+<div><img src="images/optimized_generation_play.gif" width="500" height="600"></div>
 
 # Play video
-[TetrisPlay1](TetrisPlay1.mp4) [TetrisPlay2](TetrisPlay2.mp4)
+[TetrisPlay_AI_Learning](TetrisPlay_AI_Learning.mp4) <br>
+[TetrisPlay_Battle](TetrisPlay_Battle.mp4)
 
 # Weights
 Weight consists of positive and negative factors that affect the game. <br>
@@ -33,8 +38,7 @@ Generation : 15 ~ (AI play only 1 game and there is no limit on the number of bl
 [ResultWeights.txt](ResultWeights.txt)
 
 # Execution screen
-<div><img src="images/tetris_main.PNG" width="250" height="300"><img src="images/start_learning.PNG" width="250" height="300"></div>
-<div><img src="images/set_weights.PNG" width="250" height="300"><img src="images/select_level.PNG" width="250" height="300"></div>
-<div><img src="images/play_with_GA.PNG" width="500" height="300"></div>
+<div><img src="images/main_screen.gif" width="250" height="300"><img src="images/learning_option_screen.gif" width="250" height="300"></div>
+<div><img src="images/weight_setting_screen.gif" width="250" height="300"><img src="images/level_selecting_screen.gif" width="250" height="300"></div>
 
 

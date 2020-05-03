@@ -5,10 +5,10 @@ This project was written in GameMaker Studio 2. <br>
 [GameMaker Studio 2](https://accounts.yoyogames.com/downloads)
 
 # Learning example
-<b>* Early Generation Play</b>
+<b>* Early Generation Play</b> <br>
 <div><img src="images/start_generation_play.gif" width="500" height="600"></div> <br>
-<br>
-<b>* Optimized Generation Play</b> <br>
+<br><br>
+<b>* Optimized Generation Play</b> <br><br>
 <div><img src="images/optimized_generation_play.gif" width="500" height="600"></div>
 
 # Play video

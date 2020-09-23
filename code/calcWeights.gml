@@ -14,7 +14,7 @@ for (var j=0; j<N; j++)
 {
 	var heightCheck = true;
 	
-	for (var i=tetrisborderLine+Extra; i<M; i++)
+	for (var i=tetrisborderLine+topEmptySpace; i<M; i++)
 	{
 		if (virtualField[i,j] != -1)	//블록을 만나면
 		{
@@ -38,7 +38,7 @@ for (var i=0; i<N-1; i++)
 	bumpiness += abs(heights[i+1] - heights[i]);
 
 //For completeLine
-for (var i=tetrisborderLine+Extra; i<M; i++)
+for (var i=tetrisborderLine+topEmptySpace; i<M; i++)
 {
 	var count = 0;
 	for (var j=0; j<N; j++)

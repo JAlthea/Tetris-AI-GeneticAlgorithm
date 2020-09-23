@@ -118,7 +118,7 @@ for (var nowFigure=0; j<countBlockFigure; j++)	//하나의 블록 당 최대 3�
 		virtualPa[i,0] = virtualP[0] - cx;
 		virtualPa[i,1] = virtualP[1] + cy;
 	}
-	if (!isVaildArrayIndex_v)
+	if (!isVaildArrayIndex_v())
 	{
 		for (var i=0; i<4; i++)
 		{
@@ -128,7 +128,7 @@ for (var nowFigure=0; j<countBlockFigure; j++)	//하나의 블록 당 최대 3�
 	}
 	
 	//Move -X : 인덱스를 다시 0이 될 때까지(왼쪽 벽) 왼쪽으로 옮겨준다.
-	while (isVaildArrayIndex_v)
+	while (isVaildArrayIndex_v())
 	{
 		for (var i=0; i<4; i++)
 		{
@@ -140,7 +140,7 @@ for (var nowFigure=0; j<countBlockFigure; j++)	//하나의 블록 당 최대 3�
 			virtualPa[i,0] -= 1;
 		}
 	}
-	if (!isVaildArrayIndex_v)
+	if (!isVaildArrayIndex_v())
 	{
 		for (var i=0; i<4; i++)
 		{

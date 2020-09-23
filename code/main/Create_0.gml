@@ -36,8 +36,7 @@ randomize();	//Init Random Seed
 randomBag = ds_list_create();
 for (var i=0; i<7; i++)
 	ds_list_add(randomBag, i);
-ds_list_shuffle(randomBag);
-randomBagIndex = 0;
+shuffleRandomBag();
 
 //Offset
 frameX = 1 * cellSize;

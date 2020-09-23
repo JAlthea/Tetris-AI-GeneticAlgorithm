@@ -18,6 +18,7 @@ for (var i=0; i<M; i++)
 		
 /* Init Block */
 for (var i=0; i<4; i++)
+{
 	for (var j=0; j<2; j++)
 	{
 		pa[i,j] = 0;
@@ -25,6 +26,7 @@ for (var i=0; i<4; i++)
 		pc[i,j] = 0;
 		next[i,j] = 0;
 	}
+}
 
 /* Init Virtual Flame */
 for (var i=0; i<M; i++)
@@ -33,11 +35,13 @@ for (var i=0; i<M; i++)
 
 /* Init Virtual Block */
 for (var i=0; i<4; i++)
+{
 	for (var j=0; j<2; j++)
 	{
 		virtualPa[i,j] = 0;
 		virtualPb[i,j] = 0;
 	}
+}
 
 /* Init First Start Block */
 for (var i=0; i<4; i++)

@@ -33,6 +33,7 @@ figures[6,0] = 2; figures[6,1] = 3; figures[6,2] = 4; figures[6,3] = 5;	//O
 
 //Random Bag
 randomize();	//Init Random Seed
+randomBagIndex = 0;
 randomBag = ds_list_create();
 for (var i=0; i<7; i++)
 	ds_list_add(randomBag, i);

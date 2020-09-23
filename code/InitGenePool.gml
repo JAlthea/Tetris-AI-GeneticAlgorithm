@@ -9,8 +9,6 @@ if (inputGeneration == 0)
 		var randomWeights = ds_list_create();
 		for (var j=0; j<weightCount; j++)
 			ds_list_add(randomWeights, random_range(-maxWeightValue, maxWeightValue));
-		
-		/* [Weights, Generation, Score] */
 	   	ds_list_add(Genes, getGene(0, generation, randomWeights));
 	}
 }
@@ -33,8 +31,6 @@ else if (inputGeneration < 99)
 			var randomWeights = ds_list_create();
 			for (var j=0; j<weightCount; j++)
 				ds_list_add(randomWeights, random_range(-maxWeightValue, maxWeightValue));
-	
-			/* [Weights, Generation, Score] */
 		    	ds_list_add(Genes, getGene(0, generation, randomWeights));
 		}
 		
@@ -73,9 +69,7 @@ else if (inputGeneration < 99)
 				var nowWeights = ds_list_create();
 				for (var j=0; j<weightCount; j++)
 					ds_list_add(nowWeights, real(nowStrings[j+1]));
-				
-				/* [Weights, Generation, Score] */
-			    ds_list_add(Genes, getGene(0, inputGeneration, nowWeights));
+			    	ds_list_add(Genes, getGene(0, inputGeneration, nowWeights));
 			}
 			
 			break;
@@ -89,8 +83,6 @@ else if (inputGeneration < 99)
 			var randomWeights = ds_list_create();
 			for (var j=0; j<weightCount; j++)
 				ds_list_add(randomWeights, random_range(-maxWeightValue, maxWeightValue));
-	
-			/* [Weights, Generation, Score] */
 		    	ds_list_add(Genes, getGene(0, generation, randomWeights));
 		}
 	}

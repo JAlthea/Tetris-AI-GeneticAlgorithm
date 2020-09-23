@@ -1,20 +1,25 @@
 /// @description Init
 
-//OneByOneBlockSize
+//1x1 BlockSize
 cellSize = 32;
 
+//For border check
+DY = { 1, -1, 0, 0 };
+DX = { 0, 0, 1, -1 };
+
 //Blocks and Frame
-Extra = 3;	//Top Empty Space
-M = 20 + 3 + Extra;	N = 10;	//Tetris Frame Size
-field[M,N] = 0;	//Tetris Frame
-virtualField[M,N] = 0;	//Virtual Tetris Frame For GeneticAlgorithm
-pa[4,2] = 0;	//Now Block
-pb[4,2] = 0;	//Before Block
-pc[4,2] = 0;	//Simulation Block
-next[4,2] = 0;	//Next Block
-virtualPa[4,2] = 0;	//Now Virtual Block
-virtualPb[4,2] = 0;	//Before Virtual Block
-saveBlockPosition[3] = 0;	//Decided Position Of Block And Rotation
+topEmptySpace = 3;	//start block position
+M = 23 + topEmptySpace;	//Y axis : tetris frame size 
+N = 10;	//X axis : tetris frame size 
+field[M,N] = 0;	//Tetris frame
+virtualField[M,N] = 0;	//Virtual tetris frame for genetic algorithm simulation
+pa[4,2] = 0;	//real now block
+pb[4,2] = 0;	//real before block
+pc[4,2] = 0;	//real extra block for calculation
+next[4,2] = 0;	//real next block
+virtualPa[4,2] = 0;	//virtual now block
+virtualPb[4,2] = 0;	//virtual before Block
+saveBlockPosition[3] = 0;	//decided position of block & rotation
 
 //Set Tetrominos : Tetris Figures
 figures[7,4] = 0;
@@ -49,7 +54,7 @@ delayKey = 0;
 mil = false;
 onSpace = false;
 
-//For GA
+//For AI
 bPutIn = false;
 X = 0;
 Y = 0;
@@ -72,6 +77,7 @@ for (var i=0; i<M; i++)
 		
 /* Init Block */
 for (var i=0; i<4; i++)
+{
 	for (var j=0; j<2; j++)
 	{
 		pa[i,j] = 0;
@@ -79,6 +85,7 @@ for (var i=0; i<4; i++)
 		pc[i,j] = 0;
 		next[i,j] = 0;
 	}
+}
 
 /* Init Virtual Flame */
 for (var i=0; i<M; i++)
@@ -87,11 +94,13 @@ for (var i=0; i<M; i++)
 
 /* Init Virtual Block */
 for (var i=0; i<4; i++)
+{
 	for (var j=0; j<2; j++)
 	{
 		virtualPa[i,j] = 0;
 		virtualPb[i,j] = 0;
 	}
+}
 
 /* Init First Start Block */
 for (var i=0; i<4; i++)
@@ -203,5 +212,6 @@ maxBlockCount = 1000000000;	//Low Generation : 1000, High Generation : INF
 globalvar nowBlockCount;
 nowBlockCount = 0;
 
+/* Before Start Init GenePool */
 InitGenePool();
 generation = inputGeneration;

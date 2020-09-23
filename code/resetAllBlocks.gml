@@ -1,4 +1,4 @@
-/* Reset All Blocks */
+/* 블록에 대한 정보를 처음 상태로 되돌리는 리셋 함수 */
 
 timer = 0;
 gametimer = 0;

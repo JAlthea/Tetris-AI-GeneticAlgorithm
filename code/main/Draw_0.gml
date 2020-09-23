@@ -15,14 +15,14 @@ while (oExit)
 //Temporary Pause Button
 if (oPause)
 {
-	timer -= 1;
-	gametimer -= 1/room_speed;
+	timer = 0;
+	gametimer = 0;
 }
 
 /* Running By Genetic Algorithm */
 else if (!bPutIn)
 {
-	decideBlock();	//최적의 위치를 갖는 블록(tmp)의 정보를 반환하여 현재 블록(pa, pb)의 위치를 결정한다.
+	simulationForNextPosition();	//최적의 위치를 갖는 블록의 정보를 시뮬레이션하여 현재 블록(pa, pb)의 위치를 결정한다.
 	bPutIn = true;
 	X = 0;
 	Y = 0;
@@ -36,7 +36,7 @@ else if (!bPutIn)
 	}
 }
 else if (timer > oDelay && bPutIn)
-{	
+{
 	var count = putBlockStepByStep();	//블록을 이동하고 놓는 과정을 보여준다.
 	if (oSkip)	//최대속도로 가속시
 	{
@@ -76,14 +76,14 @@ else if (timer > oDelay && bPutIn)
 			next[i,0] = figures[nextFigure, i] % 2 + blockNextX;	//Pos X
 			next[i,1] = floor(figures[nextFigure, i] / 2) + blockNextY; //Pos Y
 		}
-		fitFrameNextBlock();
+		fitFrameForNextBlock();
 	
 		bPutIn = false;
 		saveBlockPosition[0] = 0;
 		saveBlockPosition[1] = 0;
 		saveBlockPosition[2] = 0;
 		
-		//gameScore += 10;	//Add Score
+		gameScore += 10;	//Add Score
 		nowBlockCount++;
 	}
 	
@@ -95,7 +95,7 @@ while (true)
 {
 	var countRemovedLine = 0;
 	var k = M - 1;
-	for (var i=k; i>3+Extra; i--)	//hardcode : 3 + Extra
+	for (var i=k; i>=tetrisborderLine+topEmptySpace; i--)
 	{
 		var count = 0;
 		for (var j=0; j<N; j++)
@@ -116,7 +116,7 @@ while (true)
 		break;
 }
 /* Combo Score Expression */
-//gameScore += (101 + (countRemovedLine*10)) * countRemovedLine;
+gameScore += (101 + (countRemovedLine*10)) * countRemovedLine;
 
 //Gameover
 gameover();

@@ -1,6 +1,6 @@
-var y = virtualPa[i,0];
-var x = virtualPa[i,1];
+var x = virtualPa[i,0];
+var y = virtualPa[i,1];
 for (var i=0; i<4; i++)
-	if (y < 0 || y >= M || x >= N || virtualField[virtualPa[i,1],virtualPa[i,0]] != -1)
-		return 0;
-return 1;
+	if (y < top || x < 0 || y >= M || x >= N || virtualField[y,x] != -1)
+		return false;
+return true;

@@ -31,7 +31,7 @@ figures[4,0] = 2; figures[4,1] = 3; figures[4,2] = 5; figures[4,3] = 7;	//L
 figures[5,0] = 3; figures[5,1] = 5; figures[5,2] = 7; figures[5,3] = 6;	//J
 figures[6,0] = 2; figures[6,1] = 3; figures[6,2] = 4; figures[6,3] = 5;	//O
 
-//Random Bag
+//Set Random Bag
 randomize();	//Init Random Seed
 randomBagIndex = 0;
 randomBag = ds_list_create();
@@ -65,11 +65,6 @@ gameScore = 0;
 delay = 10;
 timer = 0;
 gametimer = 0;
-nowColor = irandom(8);	//Now Color Choice
-nowFigure = ds_list_find_value(randomBag, randomBagIndex++);	//Now Figure Choice
-nextColor = irandom(8);	//Next Color Choice
-nextFigure = ds_list_find_value(randomBag, randomBagIndex);	//Next Figure Choice
-
 resetAllBlocks();
 
 /* User Interface */

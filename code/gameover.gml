@@ -1,27 +1,20 @@
 for (var j=0; j<N; j++)
 {
 	/* Gameover Condition */
-	if (field[3 + Extra, j] != -1 || nowBlockCount >= maxBlockCount)	//hardcode : 3 + Extra
+	if (field[tetrisborderLine - 1 + topEmptySpace, j] != -1 || nowBlockCount >= maxBlockCount)
 	{
 		/* Only One Gene Mode (Ex: SetWeights, PlayWithGA) */
-		if (inputGeneration == 99)
+		if (inputGeneration >= 99)
 		{
-			show_message("설정한 가중치로 게임이 끝났습니다. \n");
+			if (inputGeneration == 99)
+				show_message("설정한 가중치로 게임이 끝났습니다. \n");
+			else
+				show_message("와 승리하셨어요! 다음 레벨에 도전해봐요~ \n");
 			game_restart();
-			break;
-		}
-		else if (inputGeneration == 100)
-		{
-			show_message("와 승리하셨어요! 다음 레벨에 도전해봐요~ \n");
-			game_restart();
-			break;
+			return;
 		}
 		
-		
-		
-		
-		
-		/* Game Repeat Statement */
+		/* Game Repeat Statement (Ex: AI Learning) */
 		nowBlockCount = 0;
 		nowTotalScore += gameScore;
 		gameScore = 0;
@@ -85,13 +78,12 @@ for (var j=0; j<N; j++)
 			}
 			
 			/* Save Weights of All Genes */
-			saveWeightsToFile(Genes);
+			fwriteWeights(Genes);
 			
 			/* 
 			Part 2. <Selection & Crossover & Mutation Calculate>
 			선택연산, 교차연산, 변이연산을 통해서 후대의 유전자들을 대체한다.
 			*/
-			
 			
 			/*
 			// 최우수 유전자(1개) : 그대로 다음 세대로 넘긴다. (엘리트 개체의 보존을 위함)
@@ -125,7 +117,6 @@ for (var j=0; j<N; j++)
 				ds_list_replace(Genes, i, getGene(0, generation, nowWeights));
 			}
 			*/
-			
 			
 			/* 
 			개선된 유전자(30%) : 교차연산을 전체 인구의 30%가 될 때까지 반복한다.
@@ -223,8 +214,8 @@ for (var j=0; j<N; j++)
 						nowWeight -= r;
 					else
 						nowWeight += r;
-					ds_list_replace(nowWeights, j, nowWeight);
 					
+					ds_list_replace(nowWeights, j, nowWeight);
 					ds_list_replace(Genes, i, getGene(0, generation, nowWeights));
 				}
 			}
@@ -233,8 +224,8 @@ for (var j=0; j<N; j++)
 			ds_list_clear(Scores);
 		}
 		
-		resetBlock();
-		resetRandomBag();
-		break;
+		resetAllBlocks();
+		shuffleRandomBag();
+		return;
 	}
 }

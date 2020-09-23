@@ -19,28 +19,9 @@ for (var j=0; j<N; j++)
 		nowTotalScore += gameScore;
 		gameScore = 0;
 		gametimer = 0;
-		if (nowRepeatGame == maxRepeatGame || nowTotalScore == 0)	//For Worst Gene Cleared Line 0
+		if (nowRepeatGame == maxRepeatGame || nowTotalScore == 0)	//최악의 경우 0줄도 제거하지 못한 경우도 고려
 		{	
-			/* Update Total Scores */
-			var g = ds_list_find_value(Genes, geneIndex);
-			g[0] = nowTotalScore;	//Apply GameScore
-
-			if (ds_list_find_index(Scores, g[0]) == -1)
-			{
-				ds_list_add(Scores, g[0]);	//Add Scores
-			}
-			else
-			{
-				var gap = 0.01;
-				while (ds_list_find_index(Scores, g[0] - gap))
-				{	
-					gap += 0.01;
-				}
-				ds_list_add(Scores, g[0] - gap);	//Update Scores (Deduplication)
-				g[0] -= gap;
-			}
-			ds_list_replace(Genes, geneIndex, getGene(g[0], g[1], g[2]));
-			
+			updateScore();
 			nowRepeatGame = 0;
 			nowTotalScore = 0;
 			geneIndex++;
@@ -53,7 +34,10 @@ for (var j=0; j<N; j++)
 		/* Terminate Now Generation */
 		if (geneIndex == genePoolSize)
 		{
+			generation++;
 			AI_operation();
+			geneIndex = 0;
+			ds_list_clear(Scores);
 		}
 		resetAllBlocks();
 		shuffleRandomBag();

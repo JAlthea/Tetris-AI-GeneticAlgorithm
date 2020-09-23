@@ -4,14 +4,12 @@ virtualPb(가상 블록 : 시뮬레이션을 위한 블록)의 현재 위치를 
 */
 
 var countBlock = 0;		//All AdjoinBlocks
-var dy = { 1, -1, 0, 0 };
-var dx = { 0, 0, 1, -1 };
 var y = virtualPb[i, 0];
 var x = virtualPb[i, 1];
 for (var i=0; i<4; i++)
 {
-	var ny = y + dy[i];
-	var nx = x + dx[i];
+	var ny = y + DY[i];
+	var nx = x + DX[i];
 	if (ny < 0 || nx < 0 || ny >= M || nx >= N)	//N, M?
 		continue;
 	

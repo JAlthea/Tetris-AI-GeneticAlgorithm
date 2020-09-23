@@ -1,7 +1,7 @@
-/// @desc (weights, generation, score)
+/// @desc order : { score, generation, weights }
 
-var myScore = argument0;
+var score = argument0;
 var generation = argument1;
 var weights = argument2;
 
-return [myScore, generation, weights];
+return [score, generation, weights];

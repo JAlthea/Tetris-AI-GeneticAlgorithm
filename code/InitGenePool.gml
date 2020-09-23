@@ -1,7 +1,7 @@
 /* Init GenePool */
+//inputGeneration : AI level for learning(0~98), Best Level(99), AI level for Battle(else)
 
-
-if (inputGeneration == 0)	//EarlyGeneration
+if (inputGeneration == 0)	//StartGeneration
 {
 	for (var i=0; i<genePoolSize; i++)
 	{

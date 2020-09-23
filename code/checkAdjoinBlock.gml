@@ -12,7 +12,7 @@ for (var i=0; i<4; i++)
 {
 	var ny = y + dy[i];
 	var nx = x + dx[i];
-	if (ny < 0 || nx < 0 || ny >= N || nx >= N)	//N, M?
+	if (ny < 0 || nx < 0 || ny >= M || nx >= N)	//N, M?
 		continue;
 	
 	if (virtualField[ny, nx] != -1)

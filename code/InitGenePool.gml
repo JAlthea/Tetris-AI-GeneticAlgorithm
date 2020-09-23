@@ -1,7 +1,8 @@
 /* Init GenePool */
 //inputGeneration : AI level for learning(0~98), Best Level(99), AI level for Battle(else)
 
-if (inputGeneration == 0)	//StartGeneration
+//Start Generation
+if (inputGeneration == 0)
 {
 	for (var i=0; i<genePoolSize; i++)
 	{
@@ -13,6 +14,8 @@ if (inputGeneration == 0)	//StartGeneration
 	    ds_list_add(Genes, getGene(0, generation, randomWeights));
 	}
 }
+
+//Load for AI Learning
 else if (inputGeneration < 99)
 {
 	var inputGenerationString = string(inputGeneration);
@@ -90,6 +93,8 @@ else if (inputGeneration < 99)
 	}
 	file_text_close(file);
 }
+
+//Set AI Info for Battle
 else
 {
 	if (inputGeneration == 99)

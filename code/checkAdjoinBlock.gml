@@ -1,38 +1,22 @@
 /* 
-virtualPb의 현재 위치를 기준으로 인접한 virtualField가 있는지를 확인한다.
-Pb의 인접한 4방향(i,j) => (i-1, j), (i+1, j), (i, j-1), (i, j+1) 필드를 검사한다.
+virtualPb(가상 블록 : 시뮬레이션을 위한 블록)의 현재 위치를 기준으로 인접한 adjoinBlocks(근처의 테트리스 블록들)이 있는지를 체크하고 개수를 센다.
+동서남북으로 인접한 4방향 (i,j) => (i-1, j), (i+1, j), (i, j-1), (i, j+1) 필드를 검사한다.
 */
 
 var countBlock = 0;		//All AdjoinBlocks
+var dy = { 1, -1, 0, 0 };
+var dx = { 0, 0, 1, -1 };
+var y = virtualPb[i, 0];
+var x = virtualPb[i, 1];
 for (var i=0; i<4; i++)
 {
-	var t = virtualPb[i,1] - 1;
-	if (t >= 0)
-	{
-		if (virtualField[t, virtualPb[i,0]] != -1)
-			countBlock++;
-	}
+	var ny = y + dy[i];
+	var nx = x + dx[i];
+	if (ny < 0 || nx < 0 || ny >= N || nx >= N)	//N, M?
+		continue;
 	
-	var t = virtualPb[i,1] + 1;
-	if (t < N)
-	{
-		if (virtualField[t, virtualPb[i,0]] != -1)
-			countBlock++;
-	}
-
-	var t = virtualPb[i,0] - 1;
-	if (t >= 0)
-	{
-		if (virtualField[virtualPb[i,1], t] != -1)
-			countBlock++;
-	}
-
-	var t = virtualPb[i,0] + 1;
-	if (t < N)
-	{
-		if (virtualField[virtualPb[i,1], t] != -1)
-			countBlock++;
-	}
+	if (virtualField[ny, nx] != -1)
+		countBlock++;
 }
 
 return countBlock;

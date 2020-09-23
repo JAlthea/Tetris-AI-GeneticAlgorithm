@@ -80,7 +80,7 @@ if (countBlockFigure != saveBlockPosition[2])
 			}
 		}
 		
-		return 1;
+		return true;
 	}
 	else
 	{
@@ -103,7 +103,7 @@ if (countBlockFigure != saveBlockPosition[2])
 			}
 		}
 		
-		return 1;
+		return true;
 	}
 }
 
@@ -130,7 +130,7 @@ if (checkArrayIndexReal() && X < saveBlockPosition[0])
 	}
 	
 	X++;
-	return 1;
+	return true;
 }
 
 /* Drop Y */
@@ -154,10 +154,10 @@ if (checkArrayIndexReal())
 			pb[i,1] = pc[i,1];
 		}
 		
-		return 0;
+		return false;
 	}
 	
-	return 1;
+	return true;
 }
 
-return 0;
+return false;

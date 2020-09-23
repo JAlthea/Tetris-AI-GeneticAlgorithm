@@ -100,8 +100,8 @@ for (var nowFigure=0; j<countBlockFigure; j++)	//하나의 블록 당 최대 3�
 	//블록이 회전하기 충분한 위치로 이동시킨다.
 	for (var i=0; i<4; i++)
 	{
-		virtualPc[i,0] += 4;
-		virtualPc[i,1] += 4;
+		virtualPc[i,0] += 3;
+		virtualPc[i,1] += 3;
 		
 		virtualPa[i,0] = virtualPc[i,0];
 		virtualPa[i,1] = virtualPc[i,1];
@@ -122,8 +122,8 @@ for (var nowFigure=0; j<countBlockFigure; j++)	//하나의 블록 당 최대 3�
 	{
 		for (var i=0; i<4; i++)
 		{
-			virtualPa[i,0] = 4;
-			virtualPa[i,1] = 4;
+			virtualPa[i,0] += 3;
+			virtualPa[i,1] += 3;
 		}
 	}
 	

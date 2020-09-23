@@ -7,9 +7,9 @@ Y = 0;
 countBlockFigure = 0;
 bPutIn = false;
 nowColor = irandom(8);	//Now Color Choice
-nowFigure = irandom(6);	//Now Figure Choice
+nowFigure = ds_list_find_value(randomBag, randomBagIndex++);	//Now Figure Choice
 nextColor = irandom(8);	//Next Color Choice
-nextFigure = irandom(6);//Next Figure Choice
+nextFigure = ds_list_find_value(randomBag, randomBagIndex);	//Next Figure Choice
 
 /* Init Flame */
 for (var i=0; i<M; i++)

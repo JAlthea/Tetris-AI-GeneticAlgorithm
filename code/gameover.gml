@@ -10,6 +10,7 @@ for (var j=0; j<N; j++)
 				show_message("설정한 가중치로 게임이 끝났습니다. \n");
 			else
 				show_message("와 승리하셨어요! 다음 레벨에 도전해봐요~ \n");
+			
 			game_restart();
 			return;
 		}
@@ -39,6 +40,7 @@ for (var j=0; j<N; j++)
 			geneIndex = 0;
 			ds_list_clear(Scores);
 		}
+		
 		resetAllBlocks();
 		shuffleRandomBag();
 		return;

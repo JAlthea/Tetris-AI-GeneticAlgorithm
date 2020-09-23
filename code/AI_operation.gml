@@ -1,5 +1,3 @@
-generation++;
-
 /*
 Part 1. <Rank Based Sorting>
 적합도가 높은 개체 순으로 정렬한다.
@@ -164,6 +162,3 @@ for (var i = 1; i < genePoolSize; i++)
 		ds_list_replace(Genes, i, getGene(0, generation, nowWeights));
 	}
 }
-
-geneIndex = 0;
-ds_list_clear(Scores);

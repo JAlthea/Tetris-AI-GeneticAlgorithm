@@ -69,101 +69,7 @@ nowFigure = ds_list_find_value(randomBag, randomBagIndex++);	//Now Figure Choice
 nextColor = irandom(8);	//Next Color Choice
 nextFigure = ds_list_find_value(randomBag, randomBagIndex);	//Next Figure Choice
 
-/* Init Flame */
-for (var i=0; i<M; i++)
-	for (var j=0; j<N; j++)
-		field[i,j] = -1;
-		
-/* Init Block */
-for (var i=0; i<4; i++)
-{
-	for (var j=0; j<2; j++)
-	{
-		pa[i,j] = 0;
-		pb[i,j] = 0;
-		pc[i,j] = 0;
-		next[i,j] = 0;
-	}
-}
-
-/* Init Virtual Flame */
-for (var i=0; i<M; i++)
-	for (var j=0; j<N; j++)
-		virtualField[i,j] = -1;	
-
-/* Init Virtual Block */
-for (var i=0; i<4; i++)
-{
-	for (var j=0; j<2; j++)
-	{
-		virtualPa[i,j] = 0;
-		virtualPb[i,j] = 0;
-	}
-}
-
-/* Init First Start Block */
-for (var i=0; i<4; i++)
-{
-	pa[i,0] = figures[nowFigure, i] % 2 + blockStartX;	//Pos X
-	pa[i,1] = floor(figures[nowFigure, i] / 2) + blockStartY;	//Pos Y
-	
-	virtualPa[i,0] = pa[i,0];
-	virtualPa[i,1] = pa[i,1];
-}
-
-/* Init Next Start Block */
-for (var i=0; i<4; i++)
-{
-	next[i,0] = figures[nextFigure, i] % 2 + blockNextX;	
-	next[i,1] = floor(figures[nextFigure, i] / 2) + blockNextY;
-}
-
-/* Rotation Next Start Block */
-//Because next block frame is not fit
-p = [next[1,0], next[1,1]];
-for (var i=0; i<4; i++)
-{
-	var cx = next[i,1] - p[1];
-	var cy = next[i,0] - p[0];
-	next[i,0] = p[0] - cx;
-	next[i,1] = p[1] + cy;
-}
-
-/* Fit X, Y Position About Next Start Block */
-for (var i=0; i<4; i++)
-{
-	if (nextFigure == 0)
-	{	
-		next[i,0] += 2;
-		next[i,1] += 2;
-	}
-	else if (nextFigure == 1)
-	{
-		next[i,0] += 1;
-	}
-	else if (nextFigure == 2)
-	{
-		next[i,1] += 1;
-	}
-	else if (nextFigure == 3)
-	{
-		next[i,1] += 1;
-	}
-	else if (nextFigure == 4)
-	{
-		next[i,0] += 1;
-		next[i,1] += 2;
-	}
-	else if (nextFigure == 5)
-	{
-		next[i,1] += 1;
-	}
-	else if (nextFigure == 6)
-	{
-		next[i,1] += 2;
-	}
-}
-
+resetAllBlocks();
 
 /* User Interface */
 globalvar oExit;	//Game Exit
@@ -176,7 +82,6 @@ globalvar oPause;	//Temporary Stop
 oPause = false;
 globalvar oSkip;	//Accelerator For GeneticAlgorithm
 oSkip = false;
-
 
 /* For Genetic Algorithm  */
 globalvar genePoolSize;

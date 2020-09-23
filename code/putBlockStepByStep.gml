@@ -25,7 +25,7 @@ if (countBlockFigure != saveBlockPosition[2])
 			pa[i,0] = p[0] - cx;
 			pa[i,1] = p[1] + cy;
 		}
-		if (!checkArrayIndexReal())
+		if (!isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{
@@ -35,7 +35,7 @@ if (countBlockFigure != saveBlockPosition[2])
 		}
 	
 		//Move -X Index
-		while (checkArrayIndexReal())
+		while (isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{
@@ -47,7 +47,7 @@ if (countBlockFigure != saveBlockPosition[2])
 				pa[i,0] -= 1;
 			}
 		}
-		if (!checkArrayIndexReal())
+		if (!isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{	
@@ -59,9 +59,9 @@ if (countBlockFigure != saveBlockPosition[2])
 	}
 	
 	//Move +-Y Index
-	if (!checkArrayIndexReal())
+	if (!isValidArrayIndex())
 	{
-		while (!checkArrayIndexReal())
+		while (!isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{	
@@ -70,7 +70,7 @@ if (countBlockFigure != saveBlockPosition[2])
 				pa[i,1]++;
 			}
 		}
-		if (checkArrayIndexReal())
+		if (isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{	
@@ -84,7 +84,7 @@ if (countBlockFigure != saveBlockPosition[2])
 	}
 	else
 	{
-		while (checkArrayIndexReal())
+		while (isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{	
@@ -93,7 +93,7 @@ if (countBlockFigure != saveBlockPosition[2])
 				pa[i,1]--;
 			}	
 		}
-		if (!checkArrayIndexReal())
+		if (!isValidArrayIndex())
 		{
 			for (var i=0; i<4; i++)
 			{	
@@ -108,7 +108,7 @@ if (countBlockFigure != saveBlockPosition[2])
 }
 
 /* Drop X */
-if (checkArrayIndexReal() && X < saveBlockPosition[0])
+if (isValidArrayIndex() && X < saveBlockPosition[0])
 {
 	for (var i=0; i<4; i++)
 	{
@@ -118,7 +118,7 @@ if (checkArrayIndexReal() && X < saveBlockPosition[0])
 		pb[i,0] = pc[i,0];
 	}
 
-	if (!checkArrayIndexReal())
+	if (!isValidArrayIndex())
 	{
 		for (var i=0; i<4; i++)
 		{
@@ -134,7 +134,7 @@ if (checkArrayIndexReal() && X < saveBlockPosition[0])
 }
 
 /* Drop Y */
-if (checkArrayIndexReal())
+if (isValidArrayIndex())
 {	
 	for (var i=0; i<4; i++)
 	{
@@ -144,7 +144,7 @@ if (checkArrayIndexReal())
 		pb[i,1] = pc[i,1];
 	}
 	
-	if (!checkArrayIndexReal())
+	if (!isValidArrayIndex())
 	{
 		for (var i=0; i<4; i++)
 		{

@@ -49,8 +49,7 @@ for (var i=tetrisborderLine+Extra; i<M; i++)
 }
 
 //Real values in tetris
-var gene = ds_list_find_value(Genes, geneIndex);	//gene = { generation, ?, weights }
-var weights = gene[2];	//모든 가중치를 담고 있는 리스트
+var weights = getWeights(Genes, geneIndex);
 var realValueMaxHeight = ds_list_find_value(weights, 0);
 var realValueCountHole = ds_list_find_value(weights, 1);
 var realValueBumpiness = ds_list_find_value(weights, 2);

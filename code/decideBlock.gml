@@ -16,11 +16,11 @@ for (var i=0; i<M; i++)
 
 //Simulation
 var maxFitnessValue = -9999;
-for (var nowFigure=0; j<countBlockFigure; j++)
+for (var nowFigure=0; j<countBlockFigure; j++)	//하나의 블록 당 최대 3번 회전
 {
 	var dx = 0;
 	var dy = 0;
-	for (var index=0; index<N; index++)
+	for (var index=0; index<N; index++)	//X 좌표의 위치를 결정한다.
 	{
 		//X를 +index만큼 움직인다. (dx 갱신)
 		for (var i=0; i<4; i++)
@@ -99,7 +99,7 @@ for (var nowFigure=0; j<countBlockFigure; j++)
 	//Rotate
 	//블록이 회전하기 충분한 위치로 이동시킨다.
 	for (var i=0; i<4; i++)
-	{		
+	{
 		virtualPc[i,0] += 3;
 		virtualPc[i,1] += 3;
 		
@@ -109,7 +109,7 @@ for (var nowFigure=0; j<countBlockFigure; j++)
 		virtualPb[i,1] = virtualPc[i,1];
 	}
 	
-	//이전 상태로 회전시킨다.
+	//다음 상태로 회전시킨다.
 	virtualP = [virtualPa[1,0], virtualPa[1,1]];
 	for (var i=0; i<4; i++)
 	{
@@ -160,6 +160,6 @@ for (var nowFigure=0; j<countBlockFigure; j++)
 			virtualPa[i,1] -= 1;
 			if (virtualPa[i,1] < 0)
 				t = false;
-		}		
+		}	
 	}
 }

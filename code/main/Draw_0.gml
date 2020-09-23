@@ -1,10 +1,16 @@
 /// @description Running
 
+/////////////
+/// Logic ///
+/////////////
+
 timer += 1;
 gametimer += 1/room_speed;	//room_speed : 60 fixed
 
 //Exit Button
-while (oExit){}
+while (oExit) 
+{
+}
 
 //Temporary Pause Button
 if (oPause)
@@ -12,6 +18,7 @@ if (oPause)
 	timer -= 1;
 	gametimer -= 1/room_speed;
 }
+
 /* Running By Genetic Algorithm */
 else if (!bPutIn)
 {
@@ -30,7 +37,7 @@ else if (!bPutIn)
 }
 else if (timer > oDelay && bPutIn)
 {	
-	var count = putBlockInSlowly();	//블록을 이동하고 놓는 과정을 보여준다.
+	var count = putBlockStepByStep();	//블록을 이동하고 놓는 과정을 보여준다.
 	if (oSkip)	//최대속도로 가속시
 	{
 		for (var i=0; i<4; i++)
@@ -57,10 +64,7 @@ else if (timer > oDelay && bPutIn)
 		
 		//Next Block In RandomBag or RandomBag Shuffling
 		if (randomBagIndex == 6)
-		{
-			ds_list_shuffle(randomBag);
-			randomBagIndex = 0;
-		}
+			shuffleRandomBag();
 		else
 			randomBagIndex++;
 		
@@ -72,7 +76,7 @@ else if (timer > oDelay && bPutIn)
 			next[i,0] = figures[nextFigure, i] % 2 + blockNextX;	//Pos X
 			next[i,1] = floor(figures[nextFigure, i] / 2) + blockNextY; //Pos Y
 		}
-		fitNextBlockToFrame();
+		fitFrameNextBlock();
 	
 		bPutIn = false;
 		saveBlockPosition[0] = 0;
@@ -118,15 +122,12 @@ while (true)
 gameover();
 
 //Clear Extra Space
-clearExtraSpace();
+clearBlocks();
 
 
-
-
-
-//////////////////
-// For Drawing ///
-//////////////////
+///////////////
+/// Drawing ///
+///////////////
 
 draw_clear(c_black);
 //Stacked blocks
@@ -162,7 +163,6 @@ for (var i=0; i<4; i++)
 draw_sprite(mainFrameBlue, 0, 0, 0);
 draw_sprite(nextBlockFrame, 0, 0, 0);
 draw_sprite(weightBoard, 0, 8, 0);
-
 
 var g = ds_list_find_value(Genes, geneIndex);
 var w = g[2];
@@ -203,4 +203,3 @@ draw_text(405, 522, string(blockCount));
 /* Info Game State */
 draw_text(385, 620, "Line Count : " + string(gameScore)); 
 draw_text(385, 640, "Game Time : " + string(gametimer));
-

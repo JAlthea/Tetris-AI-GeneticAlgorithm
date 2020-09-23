@@ -45,7 +45,8 @@ for (var i=tetrisborderLine+topEmptySpace; i<M; i++)
 		if (virtualField[i,j] != -1)
 			count++;
 	
-	if (count == N) completeLine++;
+	if (count == N)
+		completeLine++;
 }
 
 //Real values in tetris

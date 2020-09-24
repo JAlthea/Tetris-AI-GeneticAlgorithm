@@ -5,7 +5,7 @@ var tetrisborderLine = 4;
 /* 가중치들 */
 var maxHeight = 0;				//블록의 최대 높이
 var countHole = 0;				//빈 공간의 개수
-var bumpiness = 0;				//높이의 울퉁불퉁한 정도
+var bumpiness = 0;				//높이의 편차
 var completeLine = 0;				//완전한 라인 수 (지워질 라인 수)
 
 var heights = array_create(N, 0);	//편차를 구하기 위한 높이의 합 

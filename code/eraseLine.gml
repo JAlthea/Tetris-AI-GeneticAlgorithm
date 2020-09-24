@@ -9,7 +9,7 @@ for (var i=k; i>=tetrisborderLine+topEmptySpace; i--)
 		if (field[i,j] != -1)
 			count++;
 
-    if (count < N)
+    	if (count < N)
 		k--;
 	else
 		countRemovedLine++;

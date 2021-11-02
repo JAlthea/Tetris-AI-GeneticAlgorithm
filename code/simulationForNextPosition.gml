@@ -17,7 +17,7 @@ for (var i = 0; i < M; i++)
 		virtualField[i, j] = field[i, j];
 
 /* Simulation */
-var maxFitnessValue = -9999;
+var maxFitnessValue = -9999;    //최고치를 갱신을 위한 적합도 결과값
 
 for (var nowFigure = 0; j < countBlockFigure; j++) {    //하나의 블록 당 최대 3번 회전
 	var dx = 0;
@@ -62,7 +62,7 @@ for (var nowFigure = 0; j < countBlockFigure; j++) {    //하나의 블록 당 �
 		if (maxFitnessValue < nowFitnessValue) {    //적합도 결과값이 최고치를 갱신하는 경우
 			maxFitnessValue = nowFitnessValue;
 			
-			//움직이고 회전한 정보(x, y, figure)를 저장한다.
+			/* 움직이고 회전한 정보(x, y, figure)를 저장한다. */
 			saveBlockPosition[0] = dx;
 			saveBlockPosition[1] = dy;
 			saveBlockPosition[2] = nowFigure;
@@ -102,7 +102,6 @@ for (var nowFigure = 0; j < countBlockFigure; j++) {    //하나의 블록 당 �
 		virtualPa[i, 0] = virtualP[0] - cx;
 		virtualPa[i, 1] = virtualP[1] + cy;
 	}
-	
 	if (!isVaildArrayIndex_v()) {
 		for (var i = 0; i < 4; i++) {
 			virtualPa[i, 0] += 3;

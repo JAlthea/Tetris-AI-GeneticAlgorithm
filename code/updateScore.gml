@@ -3,14 +3,14 @@
 var g = ds_list_find_value(Genes, geneIndex);
 g[0] = nowTotalScore;	//Apply GameScore
 
-if (ds_list_find_index(Scores, g[0]) == -1) {
-	ds_list_add(Scores, g[0]);	//Add Scores
+if (ds_list_find_index(Scores, g[0]) == -1) {    //Add Scores
+	ds_list_add(Scores, g[0]);	
 }
-else {
+else {    //Update Scores (Deduplication)
 	var gap = 0.01;
 	while (ds_list_find_index(Scores, g[0] - gap))
 		gap += 0.01;
-	ds_list_add(Scores, g[0] - gap);	//Update Scores (Deduplication)
+	ds_list_add(Scores, g[0] - gap);	
 	g[0] -= gap;
 }
 

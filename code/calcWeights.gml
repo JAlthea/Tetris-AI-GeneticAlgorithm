@@ -3,50 +3,50 @@
 var tetrisborderLine = 4;
 
 /* 가중치들 */
-var maxHeight = 0;				//블록의 최대 높이
-var countHole = 0;				//빈 공간의 개수
-var bumpiness = 0;				//높이의 편차
-var completeLine = 0;				//완전한 라인 수 (지워질 라인 수)
+var maxHeight = 0;    //블록의 최대 높이
+var countHole = 0;    //빈 공간의 개수
+var bumpiness = 0;    //높이의 편차
+var completeLine = 0;    //완전한 라인 수 (지워질 라인 수)
 
-var heights = array_create(N, 0);	//편차를 구하기 위한 높이의 합 
-//For maxHeight, countHole
-for (var j=0; j<N; j++)
-{
+var heights = array_create(N, 0);    //편차를 구하기 위한 높이의 합 
+
+/* For maxHeight, countHole */
+for (var j = 0; j < N; j++) {
 	var heightCheck = true;
 	
-	for (var i=tetrisborderLine+topEmptySpace; i<M; i++)
-	{
-		if (virtualField[i,j] != -1)	//블록을 만나면
-		{
-			if (heightCheck)
-			{
+	for (var i = tetrisborderLine + topEmptySpace; i < M; i++) {
+		if (virtualField[i,j] != -1) {    //블록을 만나면
+			if (heightCheck) {
 				heights[j] = M - i;
-				if (maxHeight < heights[j])
+				if (maxHeight < heights[j]) {
 					maxHeight = heights[j];
+				}
 				heightCheck = false;
 			}
 		}
-		else if (!heightCheck)
-		{
+		else if (!heightCheck) {
 			countHole++;
 		}
 	}
 }
 
-//For bumpiness
-for (var i=0; i<N-1; i++)
-	bumpiness += abs(heights[i+1] - heights[i]);
+/* For bumpiness */
+for (var i = 0; i < N - 1; i++) {
+	bumpiness += abs(heights[i + 1] - heights[i]);
+}
 
-//For completeLine
-for (var i=tetrisborderLine+topEmptySpace; i<M; i++)
-{
+/* For completeLine */
+for (var i = tetrisborderLine + topEmptySpace; i < M; i++) {
 	var count = 0;
-	for (var j=0; j<N; j++)
-		if (virtualField[i,j] != -1)
+	for (var j = 0; j < N; j++) {
+		if (virtualField[i, j] != -1) {
 			count++;
+		}
+	}
 	
-	if (count == N)
+	if (count == N) {
 		completeLine++;
+	}
 }
 
 //Real values in tetris

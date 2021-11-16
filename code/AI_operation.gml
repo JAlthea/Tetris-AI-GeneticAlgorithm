@@ -5,23 +5,20 @@ Part 1. <Rank Based Sorting>
 
 /* Sorting Based On Score (Score, Weights) */
 var sortedList = ds_map_create();
-for (var i = 0; i < genePoolSize; i++)
-{
+for (var i = 0; i < genePoolSize; i++) {
 	var tmpGene = ds_list_find_value(Genes, i);
 	ds_map_add(sortedList, tmpGene[0], tmpGene[2]);
 }
 ds_list_clear(Genes);
-ds_list_sort(Scores, false);	//Descending Sort
+ds_list_sort(Scores, false);    //Descending Sort
 bestScore = ds_list_find_value(Scores, 0);
-for (var i = 0; i < genePoolSize; i++)
-{
+for (var i = 0; i < genePoolSize; i++) {
 	var nowScore = ds_list_find_value(Scores, i);
 	var nowWeights = ds_map_find_value(sortedList, nowScore);
 	ds_list_add(Genes, getGene(nowScore, generation, nowWeights));
 }
 
-/* Save Weights of All Genes */
-fwriteWeights(Genes);
+fwriteWeights(Genes);    //Save Weights of All Genes
 
 /*
 Part 2. <Selection & Crossover & Mutation Calculate>
@@ -33,26 +30,28 @@ Part 2. <Selection & Crossover & Mutation Calculate>
 var eliteInfo = 0;
 var bestGene = ds_list_find_value(Genes, 0);
 var bestWeights = bestGene[2];
-for (var j=0; j<weightCount; j++)
+for (var j = 0; j < weightCount; j++) {
 	eliteInfo += ds_list_find_value(bestWeights, j);
+}
 eliteInfo /= weightCount * maxWeightValue;
 */
 
 /*
-for (var i=1; i<genePoolSize; i++)
-{
+for (var i = 1; i < genePoolSize; i++) {
 	var nowGene = ds_list_find_value(Genes, irandom(genePoolSize - 1));
 	var nowWeights = nowGene[2];
-	for (var j=0; j<weightCount; j++)
-	{
+	for (var j = 0; j < weightCount; j++) {
 		var r = random_range(-eliteInfo, eliteInfo);
 		var nowWeight = ds_list_find_value(nowWeights, j);
-		if (nowWeight + r >= maxWeightValue)
+		if (nowWeight + r >= maxWeightValue) {
 			nowWeight -= r;
-		else if (nowWeight + r <= -maxWeightValue)
+		}
+		else if (nowWeight + r <= -maxWeightValue) {
 			nowWeight -= r;
-		else
+		}
+		else {
 			nowWeight += r;
+		}
 
 		ds_list_replace(nowWeights, j, nowWeight);
 	}
@@ -67,30 +66,29 @@ for (var i=1; i<genePoolSize; i++)
 */
 var computedGenes = ds_list_create();
 var nowGenePoolSize = 0;
-while (nowGenePoolSize < genePoolSize * 0.3)
-{
+while (nowGenePoolSize < genePoolSize * 0.3) {
 	/* Selection Part */
 	var bestOne = -9 * maxWeightValue;
 	var bestTwo = -9 * maxWeightValue;
 	var bestOneW = ds_list_create();
 	var bestTwoW = ds_list_create();
-	for (var i = 0; i < genePoolSize * 0.1; i++)
-	{
+	for (var i = 0; i < genePoolSize * 0.1; i++) {
 		var nowGene = ds_list_find_value(Genes, irandom(genePoolSize - 1));
 		var nowWeights = nowGene[2];
-		if (bestOne < nowGene[0])
-		{
+		if (bestOne < nowGene[0]) {
 			bestOne = nowGene[0];
 			ds_list_clear(bestOneW);
-			for (var j = 0; j < weightCount; j++)
+			for (var j = 0; j < weightCount; j++) {
 				ds_list_add(bestOneW, ds_list_find_value(nowWeights, j));
+			}
 		}
-		if (bestTwo < nowGene[0] && bestOne > nowGene[0])
-		{
+		
+		if (bestTwo < nowGene[0] && bestOne > nowGene[0]) {
 			bestTwo = nowGene[0];
 			ds_list_clear(bestTwoW);
-			for (var j = 0; j < weightCount; j++)
+			for (var j = 0; j < weightCount; j++) {
 				ds_list_add(bestTwoW, ds_list_find_value(nowWeights, j));
+			}
 		}
 	}
 
@@ -100,17 +98,15 @@ while (nowGenePoolSize < genePoolSize * 0.3)
 	//var v2 = bestTwo / (bestOne + bestTwo);
 
 	var normalizer = 0;
-	for (var i = 0; i < weightCount; i++)
-	{
+	for (var i = 0; i < weightCount; i++) {
 		var nowW1 = ds_list_find_value(bestOneW, i) * bestOne;
 		var nowW2 = ds_list_find_value(bestTwoW, i) * bestTwo;
 		ds_list_add(bestOfBest, nowW1 + nowW2);
-		normalizer += sqr(nowW1 + nowW2);	//pow(x)
+		normalizer += sqr(nowW1 + nowW2);    //pow(x)
 	}
-	normalizer = sqrt(normalizer);	//root(x)
+	normalizer = sqrt(normalizer);    //root(x)
 
-	for (var i = 0; i < weightCount; i++)
-	{
+	for (var i = 0; i < weightCount; i++) {
 		var bestW = ds_list_find_value(bestOfBest, i);
 		bestW /= normalizer;
 		ds_list_replace(bestOfBest, i, bestW);
@@ -122,18 +118,17 @@ while (nowGenePoolSize < genePoolSize * 0.3)
 }
 
 /* Replace Low Rated Gene With Computed Gene */
-for (var i = genePoolSize * 0.7; i < genePoolSize; i++)
-{
+for (var i = genePoolSize * 0.7; i < genePoolSize; i++) {
 	var goodGene = ds_list_find_value(computedGenes, genePoolSize - i - 1);
 	ds_list_replace(Genes, i, getGene(0, generation, goodGene));
 }
 
 /* Compulsory Random Gene (10%) */
-for (var i = genePoolSize * 0.6; i < genePoolSize * 0.7; i++)
-{
+for (var i = genePoolSize * 0.6; i < genePoolSize * 0.7; i++) {
 	var randomWeights = ds_list_create();
-	for (var j = 0; j < weightCount; j++)
+	for (var j = 0; j < weightCount; j++) {
 		ds_list_add(randomWeights, random_range(-maxWeightValue, maxWeightValue));
+	}
 
 	ds_list_replace(Genes, i, getGene(0, generation, randomWeights));
 }
@@ -142,21 +137,22 @@ for (var i = genePoolSize * 0.6; i < genePoolSize * 0.7; i++)
 Mutation Part
 돌연변이(각 유전자마다 5%의 확률로 발생) : 각 가중치에 랜덤값을 더해준다. (최우수 개체 제외)
 */
-for (var i = 1; i < genePoolSize; i++)
-{
-	if (random_range(0, maxWeightValue) < 0.05)
-	{
+for (var i = 1; i < genePoolSize; i++) {
+	if (random_range(0, maxWeightValue) < 0.05) {
 		var nowGene = ds_list_find_value(Genes, i);
 		var nowWeights = nowGene[2];
 		var j = irandom(weightCount - 1);
 		var nowWeight = ds_list_find_value(nowWeights, j);
 		var r = random_range(-0.2, 0.2);
-		if (nowWeight + r >= maxWeightValue)
+		if (nowWeight + r >= maxWeightValue) {
 			nowWeight -= r;
-		else if (nowWeight + r <= -maxWeightValue)
+		}
+		else if (nowWeight + r <= -maxWeightValue) {
 			nowWeight -= r;
-		else
+		}
+		else {
 			nowWeight += r;
+		}
 
 		ds_list_replace(nowWeights, j, nowWeight);
 		ds_list_replace(Genes, i, getGene(0, generation, nowWeights));

@@ -97,7 +97,7 @@ else
 gameScore += eraseLine();
 
 //Gameover
-gameover();
+isGameOver();
 
 //Clear Extra Space
 clearBlocks();

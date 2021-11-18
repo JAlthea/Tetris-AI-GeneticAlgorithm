@@ -32,7 +32,7 @@ for (var j = 0; j < N; j++) {
 		/* Terminate Now Generation include AI operation */
 		if (geneIndex == genePoolSize) {
 			generation++;
-			AI_operation();
+			operation();
 			geneIndex = 0;
 			ds_list_clear(Scores);
 		}

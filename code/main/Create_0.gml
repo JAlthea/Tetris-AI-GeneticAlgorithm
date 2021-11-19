@@ -68,47 +68,47 @@ gametimer = 0;
 resetAllBlocks();
 
 /* User Interface */
-globalvar oExit;	//Game Exit
+globalvar oExit;    //Game Exit
 oExit = false;
 globalvar oMaxDelay;
 oMaxDelay = 11;
-globalvar oDelay;	//Game Speed For GeneticAlgorithm
+globalvar oDelay;    //Game Speed For GeneticAlgorithm
 oDelay = oMaxDelay;
-globalvar oPause;	//Temporary Stop
+globalvar oPause;    //Temporary Stop
 oPause = false;
-globalvar oSkip;	//Accelerator For GeneticAlgorithm
+globalvar oSkip;    //Accelerator For GeneticAlgorithm
 oSkip = false;
 
 /* For Genetic Algorithm  */
 globalvar genePoolSize;
 genePoolSize = 100;
-globalvar Genes;	//All Genes
-Genes = ds_list_create();	//DS = Data Structure
-globalvar geneIndex;	//Now Playing Gene No.
+globalvar Genes;    //All Genes
+Genes = ds_list_create();    //DS = Data Structure
+globalvar geneIndex;    //Now Playing Gene No.
 geneIndex = 0;
-globalvar Scores;		//All Scores
+globalvar Scores;    //All Scores
 Scores = ds_list_create();
 
 globalvar weightCount;
-weightCount = 4;	//Count Weights
+weightCount = 4;    //Count Weights
 globalvar selectedGeneCount;
-selectedGeneCount = genePoolSize / 10;	//Selected Gene Count For Next Generation 
+selectedGeneCount = genePoolSize / 10;    //Selected Gene Count For Next Generation 
 globalvar generation;
-generation = 0;		//Gene Generation
+generation = 0;    //Gene Generation
 globalvar bestScore;
-bestScore = 0;		//Best Score With Now Generation
+bestScore = 0;    //Best Score With Now Generation
 globalvar maxWeightValue;
-maxWeightValue = 1;	//Range Of Weights Value
+maxWeightValue = 1;    //Range Of Weights Value
 
 /* For Repeat Testing */
 globalvar nowRepeatGame;
 nowRepeatGame = 0;
 globalvar maxRepeatGame;
-maxRepeatGame = 0;		//Low Generation : 10, High Generation : 0
+maxRepeatGame = 0;    //Low Generation : 10, High Generation : 0
 globalvar nowTotalScore;
 nowTotalScore = 0;
 globalvar maxBlockCount;
-maxBlockCount = 1000000000;	//Low Generation : 1000, High Generation : INF
+maxBlockCount = 1000000000;    //Low Generation : 1000, High Generation : INF
 globalvar nowBlockCount;
 nowBlockCount = 0;
 

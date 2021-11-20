@@ -5,78 +5,66 @@
 /////////////
 
 timer += 1;
-gametimer += 1/room_speed;	//room_speed : 60 fixed
+gametimer += 1 / room_speed;    //room_speed : 60 fixed
 
-//Exit Button
-while (oExit) 
-{
-}
+while (oExit) {}    //Exit Button
 
-//Temporary Pause Button
-if (oPause)
-{
+if (oPause) {    //Temporary Pause Button
 	timer = 0;
 	gametimer = 0;
 }
-
-/* Running By Genetic Algorithm */
-else
-{
-	if (!bPutIn)
-	{
-		simulationForNextPosition();	//최적의 위치를 갖는 블록의 정보를 시뮬레이션하여 현재 블록(pa, pb)의 위치를 결정한다.
+else {    /* Running By Genetic Algorithm */
+	if (!bPutIn) {
+		simulationForNextPosition();    //최적의 위치를 갖는 블록의 정보를 시뮬레이션하여 현재 블록(pa, pb)의 위치를 결정한다.
 		bPutIn = true;
 		X = 0;
 		Y = 0;
 		countBlockFigure = 0;
-		for (var i=0; i<4; i++)
-		{
-			pc[i,0] = pa[i,0];
-			pc[i,1] = pa[i,1];
-			pb[i,0] = pa[i,0];
-			pb[i,1] = pa[i,1];
+		for (var i = 0; i < 4; i++) {
+			pc[i, 0] = pa[i, 0];
+			pc[i, 1] = pa[i, 1];
+			pb[i, 0] = pa[i, 0];
+			pb[i, 1] = pa[i, 1];
 		}
 	}
-	else if (bPutIn && timer > oDelay)
-	{
-		var count = putBlockStepByStep();	//블록을 이동하고 놓는 과정을 보여준다.
-		if (oSkip)	//최대속도로 가속시
-		{
-			for (var i=0; i<4; i++)
-			{
-				pb[i,1] = tmp[i,1];
-				pb[i,0] = tmp[i,0];
+	else if (bPutIn && timer > oDelay) {
+		var count = putBlockStepByStep();    //블록을 이동하고 놓는 과정을 보여준다.
+		
+		if (oSkip) {    //최대속도로 가속시
+			for (var i = 0; i < 4; i++) {
+				pb[i, 1] = tmp[i, 1];
+				pb[i, 0] = tmp[i, 0];
 			}
 			count = 0;
 		}
 
-		if (count == 0)	//블록을 두는 과정이 끝났을 때
-		{
+		if (count == 0)	{    //블록을 두는 과정이 끝났을 때
 			//Apply Color To Now Block
-			for (var i=0; i<4; i++)
-				field[pb[i,1], pb[i,0]] = nowColor;
+			for (var i = 0; i < 4; i++) {
+				field[pb[i, 1], pb[i, 0]] = nowColor;
+			}
 
 			//Decide Next Block To Now Block
 			nowColor = nextColor;
-			for (var i=0; i<4; i++)
-			{
-				pa[i,0] = next[i,0] - blockNextX + blockStartX;
-				pa[i,1] = next[i,1] - blockNextY + blockStartY;
+			for (var i = 0; i < 4; i++) {
+				pa[i, 0] = next[i, 0] - blockNextX + blockStartX;
+				pa[i, 1] = next[i, 1] - blockNextY + blockStartY;
 			}
 
 			//Next Block In RandomBag or RandomBag Shuffling
-			if (randomBagIndex == 6)
+			if (randomBagIndex == 6) {
 				shuffleRandomBag();
-			else
+			}
+			else {
 				randomBagIndex++;
+			}
 
 			/* Init Next Start Block */
-			nextColor = irandom(8);		//Color Choice
-			nextFigure = ds_list_find_value(randomBag, randomBagIndex);	//Figure Choice
-			for (var i=0; i<4; i++)
-			{
-				next[i,0] = figures[nextFigure, i] % 2 + blockNextX;	//Pos X
-				next[i,1] = floor(figures[nextFigure, i] / 2) + blockNextY; //Pos Y
+			nextColor = irandom(8);    //Color Choice
+			nextFigure = ds_list_find_value(randomBag, randomBagIndex);    //Figure Choice
+			for (var i = 0; i < 4; i++) {
+				next[i, 0] = figures[nextFigure, i] % 2 + blockNextX;    //Pos X
+				next[i, 1] = floor(figures[nextFigure, i] / 2) + blockNextY;    //Pos Y
 			}
 			fitFrameForNextBlock();
 
@@ -85,7 +73,7 @@ else
 			saveBlockPosition[1] = 0;
 			saveBlockPosition[2] = 0;
 
-			gameScore += 10;	//Add Score
+			gameScore += 10;    //Add Score
 			nowBlockCount++;
 		}
 
@@ -93,14 +81,10 @@ else
 	}
 }
 
-//Erase lines
-gameScore += eraseLine();
-
-//Gameover
+gameScore += eraseLine();    //Erase lines
 isGameOver();
+clearBlocks();    //Clear Extra Space
 
-//Clear Extra Space
-clearBlocks();
 
 
 ///////////////
@@ -108,32 +92,33 @@ clearBlocks();
 ///////////////
 
 draw_clear(c_black);
+
 //Stacked blocks
-for (var i=0; i<M; i++)
-{
-	for (var j=0; j<N; j++)
-	{
-		if (field[i,j] == -1)
+for (var i = 0; i < M; i++) {
+	for (var j = 0; j < N; j++) {
+		if (field[i, j] == -1) {
 			continue;
+		}
+		
 		var cx = i * cellSize;
 		var cy = j * cellSize;
-		var imgIndex = cellSize * field[i,j];
+		var imgIndex = cellSize * field[i, j];
 		draw_sprite_part(nowUsedBlock, 0, imgIndex, 0, cellSize, cellSize, cy + frameX, cx + frameY);
 	}
 }
+
 //Now blocks
-for (var i=0; i<4; i++)
-{
-	var cx = pa[i,0] * cellSize;
-	var cy = pa[i,1] * cellSize;
+for (var i = 0; i < 4; i++) {
+	var cx = pa[i, 0] * cellSize;
+	var cy = pa[i, 1] * cellSize;
 	var imgIndex = cellSize * nowColor;
 	draw_sprite_part(nowUsedBlock, 0, imgIndex, 0, cellSize, cellSize, cx + frameX, cy + frameY);
 }
+
 //Next blocks
-for (var i=0; i<4; i++)
-{
-	var cx = next[i,0] * cellSize;
-	var cy = next[i,1] * cellSize;
+for (var i = 0; i < 4; i++) {
+	var cx = next[i, 0] * cellSize;
+	var cy = next[i, 1] * cellSize;
 	var imgIndex = cellSize * nextColor;
 	draw_sprite_part(nowUsedBlock, 0, imgIndex, 0, cellSize, cellSize, cx + frameX, cy + frameY);
 }
@@ -147,13 +132,11 @@ var w = g[2];
 var geneGeneration;
 var geneNumber;
 
-if (inputGeneration == 99)
-{
+if (inputGeneration == 99) {
 	geneGeneration = "Generation : -";
 	geneNumber = "Gene No. -";
 }
-else
-{
+else {
 	geneGeneration = "Generation : " + string(g[1]);
 	geneNumber = "Gene No." + string(geneIndex);
 }
